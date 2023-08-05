@@ -92,6 +92,6 @@ Things you may want to cover:
 | user              | references | null: false, foreign_key: true |
 
 ### Association
-belongs_to :user_address
+has_one :user_address
 belongs_to :user
 belongs_to :item
