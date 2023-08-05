@@ -93,21 +93,3 @@ Things you may want to cover:
 
 ### Association
 belongs_to :user_address
-
-## categorise テーブル
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
-| name   | string | null: false |
-
-### Association 
-* has_many :items
-* has_ancestry
-
-## cards テーブル
-| Column  | Type      | Options                        |
-| ------- | --------- | ------------------------------ |
-| user_id | refrences | null: false, foreign_key: ture |
-| card_id | string    | null: false                    |
-
-### Association 
-* belongs_to :user
