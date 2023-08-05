@@ -52,7 +52,7 @@ Things you may want to cover:
 | shipping_area_id | integer    | null: false                       |
 | delivary_day_id  | integer    | null: false                       |
 | price            | integer    | null: false                       |
-| user             | references | foreign_key: ture                 |
+| user             | references | null: false, foreign_key: ture    |
 | category_id      | integer    | null: false,                      |
 
 ### Association
@@ -64,7 +64,7 @@ Things you may want to cover:
 | Column   | Type       | Options                        |
 | ---------| ---------- | ------------------------------ |
 | image    | string     | null: false                    |
-| imege_id | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
 
 ### Association
 * belong_to :item
@@ -88,8 +88,10 @@ Things you may want to cover:
 
 | Column            | Type       | Options |
 | ----------------- | ---------- | ------- |
-| item              | references | null: false, foregin_key: true |
-| user              | references | null: false, foregin_key: true |
+| item              | references | null: false, foreign_key: true |
+| user              | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user_address
+belongs_to :user
+belongs_to :item
