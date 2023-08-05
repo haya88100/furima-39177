@@ -31,32 +31,34 @@ Things you may want to cover:
 | ------------------ | ------ | ------------------------- |
 | nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
-| password           | string | null: false               |
-
+| encrypted_password | string | null: false               |
+| fast_name          | string | null: false               |
+| last_name          | string | null: false               |
+| fast_name_kana     | string | null: false               |
+| last_name_kane     | string | null: false               |
+| post_number        | string | null: false               |
+| birthady           | date   | null: false               |
 ### Association
-* has_one :user_address, dependent: :destroy
-* has_one :card, dependent: ;destroy
-* has_many :items, dependent: :destroy, foreign_key: :items
+* has_many :items
 
 ## items テーブル
 
-| Column        | Type    | Options                           |
-| ------------- | ------- | ----------------------------------|
-| name          | string  | null: false, index: true          |
-| text          | text    | null: false                       |
-| brand         | string  |                                   |
-| status        | integer | null: false, dafault: 0           |
-| chage_bearer  | integer | null: false, dafault: 0           |
-| shipping_area | integer | null: false, dafault: 0           |
-| delivary_days | integer | null: false, dafault: 0           |
-| price         | integer | null: false                       |
-| seller_id     | references | null: false, foreign_key: true |
-| buyer_id      | references | foreign_key: ture              |
-| category_id   | references | null: false, foreign_key: true |
+| Column           | Type       | Options                           |
+| ---------------- | ---------- | ----------------------------------|
+| name             | string     | null: false, index: true          |
+| memo             | text       | null: false                       |
+| status_id        | integer    | null: false                       |
+| chage_bearer_id  | integer    | null: false                       |
+| shipping_area_id | integer    | null: false                       |
+| delivary_day_id  | integer    | null: false                       |
+| price            | integer    | null: false                       |
+| user_id          | references | foreign_key: ture                 |
+| category_id      | integer    | null: false,                      |
 
 ### Association
 * belongs_to :user
 * belongs_to :category
+* belong_to :purchasea
 * has_many :item_images, dependent: :destroy
 
 ## item_images テーブル
@@ -70,31 +72,28 @@ Things you may want to cover:
 
 ## user_addresses テーブル
 
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| fast_name      | string     | null: false                    |
-| last_name      | string     | null: false                    |
-| fast_name_kana | string     | null: false                    |
-| last_name_kane | string     | null: false                    |
-| post_number    | string     | null: false                    |
-| prefecture_id  | integer    | null: false, dafault: 0        |
-| city           | string     | null: false                    |
-| house_number   | integer    |                                |
-| build_name     | string     |                                |
-| phone_number   | string     |                                |
-| user_id        | references | null: false, foregin_key: true |
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| post_number       | string     | null: false                    |
+| shipping_area_id  | integer    | null: false, dafault: 0        |
+| city              | string     | null: false                    |
+| house_number      | string     | null: false                    |
+| build_name        | string     |                                |
+| phone_number      | string     | null: false                    |
+| purchases         | references | null: false, foregin_key: true |
 
 ### Association
-* belongs_to :user
+* belongs_to :purchases
 
 ## purchases テーブル
 
-| Column  | Type       | Options |
-| ------- | ---------- | ------- |
-| item_id | references |         |
-| user_id | references |         |
+| Column            | Type       | Options |
+| ----------------- | ---------- | ------- |
+| item              | references | null: false, foregin_key: true |
+| user              | references | null: false, foregin_key: true |
 
 ### Association
+belongs_to :user_addressses
 
 ## categorise テーブル
 | Column | Type   | Options     |
