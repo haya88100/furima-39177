@@ -36,10 +36,10 @@ Things you may want to cover:
 | last_name          | string | null: false               |
 | fast_name_kana     | string | null: false               |
 | last_name_kane     | string | null: false               |
-| post_number        | string | null: false               |
 | birthady           | date   | null: false               |
 ### Association
 * has_many :items
+* has_many :purchases
 
 ## items テーブル
 
@@ -52,13 +52,12 @@ Things you may want to cover:
 | shipping_area_id | integer    | null: false                       |
 | delivary_day_id  | integer    | null: false                       |
 | price            | integer    | null: false                       |
-| user_id          | references | foreign_key: ture                 |
+| user             | references | foreign_key: ture                 |
 | category_id      | integer    | null: false,                      |
 
 ### Association
 * belongs_to :user
-* belongs_to :category
-* belong_to :purchasea
+* has_one :purchase
 * has_many :item_images, dependent: :destroy
 
 ## item_images テーブル
@@ -83,7 +82,7 @@ Things you may want to cover:
 | purchases         | references | null: false, foregin_key: true |
 
 ### Association
-* belongs_to :purchases
+* belongs_to :purchase
 
 ## purchases テーブル
 
@@ -93,7 +92,7 @@ Things you may want to cover:
 | user              | references | null: false, foregin_key: true |
 
 ### Association
-belongs_to :user_addressses
+belongs_to :user_address
 
 ## categorise テーブル
 | Column | Type   | Options     |
