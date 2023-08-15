@@ -17,7 +17,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :status
-  belongs_to :shopping_area
-  belongs_to :chage_bearer
+  belongs_to :shopping_area 
+  belongs_to :chage_bearer 
   belongs_to :delivary_day
 end
