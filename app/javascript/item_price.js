@@ -2,7 +2,6 @@ window.addEventListener('load', () => {
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
     const inputValue = parseFloat(priceInput.value);
-    console.log(inputValue);
 
     const addTaxDom = document.getElementById("add-tax-price");
     const profitDom = document.getElementById("profit");
