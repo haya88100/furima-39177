@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit]
   before_action :move_to_index, except: [:index, :show]
+  before_action :set_item, only: [:show, :edit, :update]
   before_action :redirect_if_not_owner, only: [:edit, :update]
   
   def index
@@ -22,15 +23,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item
   end
 
   def edit
-    @item = Item.find(params[:id])
+    @item
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
@@ -44,6 +44,10 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:image, :name, :memo, :category_id, :status_id, :chage_bearer_id, :shopping_area_id, :delivary_day_id, :price).merge(user: current_user)
   end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   def move_to_index
     unless user_signed_in?
       redirect_to new_user_session_path
@@ -51,7 +55,6 @@ class ItemsController < ApplicationController
   end
 
   def redirect_if_not_owner
-    @item = Item.find(params[:id])
     unless @item.user == current_user
       redirect_to action: :index
     end
