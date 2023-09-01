@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new]
   before_action :move_to_index, except: [:index, :show]
-
+  before_action :redirect_if_not_owner, only: [:edit, :update]
   
   def index
     @items = Item.all.order(created_at: :desc)
