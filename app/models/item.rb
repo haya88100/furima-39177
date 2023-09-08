@@ -22,4 +22,5 @@ class Item < ApplicationRecord
   belongs_to :shopping_area 
   belongs_to :chage_bearer 
   belongs_to :delivary_day
+  has_one :order
 end
