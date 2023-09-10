@@ -80,6 +80,32 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
+
+      it 'phone_numberが空だと保存できないこと' do
+        @order_address.phone_number = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
+      end
+
+      it 'phone_numberは10文字以上11文字以下の半角数字でないと保存できないこと' do
+        @order_address.phone_number = '123456789' 
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number should be 10 or 11 digits long and contain only numeric characters')
+        
+        @order_address.phone_number = '1234567890123' 
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number should be 10 or 11 digits long and contain only numeric characters')
+      end
+
+      it 'phone_numberに半角数字以外が含まれている場合は保存できないこと' do
+        @order_address.phone_number = '123-4567-8901' 
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number should be 10 or 11 digits long and contain only numeric characters')
+
+        @order_address.phone_number = 'abc123456789' 
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number should be 10 or 11 digits long and contain only numeric characters')
+      end
     end
   end
 end
