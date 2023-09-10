@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
 
-  
+  def sold_out?
+    order.present?
+  end
 
   validates :name, presence: true
   validates :memo, presence: true

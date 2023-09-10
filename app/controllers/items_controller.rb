@@ -28,6 +28,9 @@ class ItemsController < ApplicationController
 
   def edit
     @item
+    if @item.sold_out?
+      redirect_to root_path
+    end
   end
 
   def update
@@ -66,5 +69,7 @@ class ItemsController < ApplicationController
       redirect_to action: :index
     end
   end
+
+
 
 end

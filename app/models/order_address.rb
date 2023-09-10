@@ -1,7 +1,7 @@
 class OrderAddress
   include ActiveModel::Model
 
-  attr_accessor :postal_code, :shopping_area_id, :city, :house_number, :building_name, :phone_number, :item_id, :user_id
+  attr_accessor :postal_code, :shopping_area_id, :city, :house_number, :building_name, :phone_number, :item_id, :user_id, :token, :price
 
   with_options presence: true do
     validates :item_id
@@ -10,6 +10,7 @@ class OrderAddress
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "should be 10 or 11 digits long and contain only numeric characters" }
     validates :city
     validates :house_number
+    validates :token
   end
 
   validates :shopping_area_id, presence: true, numericality: { other_than: 1, message: "must be other than 1" }
