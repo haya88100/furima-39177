@@ -6,10 +6,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
 
-    if @item.sold_out?
-      redirect_to root_path
-    end
-    if @item.user == current_user
+    if @item.sold_out? || @item.user == current_user
       redirect_to root_path
     end
   end
