@@ -7,7 +7,7 @@
       <%= @item.name %>
     </h2>
     <div class="item-img-content">
-      <%= image_tag item_path(@item) ,class:"item-box-img" %>
+      <%= image_tag @item.image ,class:"item-box-img" %>
       
      <% if @item.sold_out? %>
       <div class="sold-out">
@@ -18,7 +18,7 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ <%= number_to_currency(@item.price, unit: "¥", format: "%n") %>
+        ¥ <%= number_to_currency(@item.price, unit: "¥", format: "%n", precision: 0) %>
       </span>
       <span class="item-postage">
         <%= @item.chage_bearer.name %>
